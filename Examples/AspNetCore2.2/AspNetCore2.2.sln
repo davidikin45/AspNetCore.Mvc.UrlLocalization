@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29209.152
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore2.2", "AspNetCore2.2.csproj", "{C99FDFEC-DE36-4A85-904C-4548FB389B89}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Mvc.UrlLocalization", "..\..\AspNetCore.Mvc.UrlLocalization\AspNetCore.Mvc.UrlLocalization.csproj", "{81CE7DA2-B0AA-4FEF-A964-EA45F6F002FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C99FDFEC-DE36-4A85-904C-4548FB389B89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C99FDFEC-DE36-4A85-904C-4548FB389B89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C99FDFEC-DE36-4A85-904C-4548FB389B89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C99FDFEC-DE36-4A85-904C-4548FB389B89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81CE7DA2-B0AA-4FEF-A964-EA45F6F002FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81CE7DA2-B0AA-4FEF-A964-EA45F6F002FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81CE7DA2-B0AA-4FEF-A964-EA45F6F002FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81CE7DA2-B0AA-4FEF-A964-EA45F6F002FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7CB18129-F2C2-493D-AC68-E64127B120FC}
+	EndGlobalSection
+EndGlobal
