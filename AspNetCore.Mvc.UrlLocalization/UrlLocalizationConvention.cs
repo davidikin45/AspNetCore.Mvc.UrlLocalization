@@ -58,14 +58,9 @@ namespace AspNetCore.Mvc.UrlLocalization
                 }
             }
 
-            //Controller doesn't have Attribute Route
-            var unmatchedSelectors = controller.Selectors.Where(x => x.AttributeRouteModel == null).ToList();
-            if (unmatchedSelectors.Any())
+            foreach (var action in controller.Actions)
             {
-                foreach (var action in controller.Actions)
-                {
-                    Apply(action);
-                }
+                Apply(action);
             }
 
             foreach (var newSelector in newSelectors)
@@ -76,15 +71,49 @@ namespace AspNetCore.Mvc.UrlLocalization
 
         public void Apply(ActionModel action)
         {
-            if(action.Controller.Selectors.Where(x => x.AttributeRouteModel == null).ToList().Any())
-            {
-                var newSelectors = new List<SelectorModel>();
+            var newSelectors = new List<SelectorModel>();
 
-                //Action has Attribute Route
-                var matchedSelectors = action.Selectors.Where(x => x.AttributeRouteModel != null).ToList();
-                if (matchedSelectors.Any())
+            //Action has Attribute Route
+            var matchedSelectors = action.Selectors.Where(x => x.AttributeRouteModel != null).ToList();
+            if (matchedSelectors.Any())
+            {
+                foreach (var selectorModel in matchedSelectors)
                 {
-                    foreach (var selectorModel in matchedSelectors)
+                    if (selectorModel.AttributeRouteModel.Template != null && selectorModel.AttributeRouteModel.Template.StartsWith("~/"))
+                    {
+                        var path = selectorModel.AttributeRouteModel.Template.Length > 2 ? $"/{selectorModel.AttributeRouteModel.Template.Substring(2)}" : "";
+                        var routeModel = new AttributeRouteModel(new RouteAttribute($"~/{_culturePrefix.Template}{path}"));
+
+                        if (_optional)
+                        {
+                            var newSelector = new SelectorModel();
+                            newSelector.AttributeRouteModel = routeModel;
+                            newSelector.AttributeRouteModel.Order = -1;
+                            newSelectors.Add(newSelector);
+                        }
+                        else{
+                            selectorModel.AttributeRouteModel = routeModel;
+                        }
+                    }
+                    else if (selectorModel.AttributeRouteModel.Template != null && selectorModel.AttributeRouteModel.Template.StartsWith("/"))
+                    {
+                        var path = selectorModel.AttributeRouteModel.Template.Length > 1 ? $"/{selectorModel.AttributeRouteModel.Template.Substring(1)}" : "";
+                        var routeModel = new AttributeRouteModel(new RouteAttribute($"/{_culturePrefix.Template}{path}"));
+
+                        if (_optional)
+                        {
+                            var newSelector = new SelectorModel();
+                            newSelector.AttributeRouteModel = routeModel;
+                            newSelector.AttributeRouteModel.Order = -1;
+                            newSelectors.Add(newSelector);
+                        }
+                        else
+                        {
+                            selectorModel.AttributeRouteModel = routeModel;
+                        }
+                    }
+                    //Controller doesn't have Attribute Route
+                    else if (action.Controller.Selectors.Where(x => x.AttributeRouteModel == null).ToList().Any())
                     {
                         var routeModel = AttributeRouteModel.CombineAttributeRouteModel(_culturePrefix, selectorModel.AttributeRouteModel);
 
@@ -101,11 +130,11 @@ namespace AspNetCore.Mvc.UrlLocalization
                         }
                     }
                 }
+            }
 
-                foreach (var newSelector in newSelectors)
-                {
-                    action.Selectors.Insert(0, newSelector);
-                }
+            foreach (var newSelector in newSelectors)
+            {
+                action.Selectors.Insert(0, newSelector);
             }
         }
     }

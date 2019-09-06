@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
 
 namespace AspNetCore.Mvc.UrlLocalization
@@ -25,16 +23,8 @@ namespace AspNetCore.Mvc.UrlLocalization
             {
                 var cultureFeature = ctx.Features.Get<IRequestCultureFeature>();   //Available after app.UseRequestLocalization(); Could also use CultureInfo.CurrentCulture or CultureInfo.CurrentUICulture.
                 var actualCulture = cultureFeature?.RequestCulture.Culture.Name;
-                var actualCultureLanguage = cultureFeature?.RequestCulture.Culture.TwoLetterISOLanguageName;
 
-                var routeOptions = ctx.RequestServices.GetRequiredService<IOptions<RouteOptions>>().Value;
-                if (routeOptions.LowercaseUrls)
-                    actualCulture = actualCulture.ToLowerInvariant();
-
-                var path = (ctx.GetRouteValue("path") ?? string.Empty).ToString();
-                path = (!string.IsNullOrEmpty(path) ? "/" : string.Empty) + path;
-
-                var culturedPath = $"{ctx.Request.PathBase}/{actualCulture}{path}{ctx.Request.QueryString.ToString()}";
+                var culturedPath = UrlLocalizationHelper.GetCulturedRedirectUrl(ctx, $"{ctx.Request.Path.ToString()}{ctx.Request.QueryString.ToString()}", actualCulture);
 
                 ctx.Response.Redirect(culturedPath);
                 return Task.CompletedTask;
@@ -56,20 +46,11 @@ namespace AspNetCore.Mvc.UrlLocalization
             //redirect culture-less routes
             routes.MapGet("{**path}", (RequestDelegate)(ctx =>
             {
-
                 var cultureFeature = ctx.Features.Get<IRequestCultureFeature>();   //Available after app.UseRequestLocalization(); Could also use CultureInfo.CurrentCulture or CultureInfo.CurrentUICulture.
-
                 var actualCulture = cultureFeature?.RequestCulture.Culture.Name;
-                var actualCultureLanguage = cultureFeature?.RequestCulture.Culture.TwoLetterISOLanguageName;
-        
-                var routeOptions = ctx.RequestServices.GetRequiredService<IOptions<RouteOptions>>().Value;
-                if (routeOptions.LowercaseUrls)
-                    actualCulture = actualCulture.ToLowerInvariant();
 
-                var path = (ctx.GetRouteValue("path") ?? string.Empty).ToString();
-                path = (!string.IsNullOrEmpty(path) ? "/" : string.Empty) + path;
+                var culturedPath = UrlLocalizationHelper.GetCulturedRedirectUrl(ctx, $"{ctx.Request.Path.ToString()}{ctx.Request.QueryString.ToString()}", actualCulture);
 
-                var culturedPath = $"{ctx.Request.PathBase}/{actualCulture}{path}{ctx.Request.QueryString.ToString()}";
                 ctx.Response.Redirect(culturedPath);
                 return Task.CompletedTask;
             }));

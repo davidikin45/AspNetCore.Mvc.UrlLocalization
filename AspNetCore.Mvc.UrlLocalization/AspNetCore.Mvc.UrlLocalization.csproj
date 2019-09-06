@@ -11,6 +11,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>ASP.NET Core Url Localization</PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Version>1.0.1</Version>
   </PropertyGroup>
   
   <ItemGroup Condition="'$(TargetFramework)' != 'netcoreapp3.0'">
