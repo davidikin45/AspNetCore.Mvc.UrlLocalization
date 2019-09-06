@@ -2,7 +2,7 @@
 
 [![nuget](https://img.shields.io/nuget/v/AspNetCore.Mvc.UrlLocalization.svg)](https://www.nuget.org/packages/AspNetCore.Mvc.UrlLocalization/) ![Downloads](https://img.shields.io/nuget/dt/AspNetCore.Mvc.UrlLocalization.svg "Downloads")
 
-By default ASP.NET comes with support for [Globalization and Localization](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/localization?view=aspnetcore-2.2) but it is used only for 
+By default ASP.NET comes with support for [Globalization and Localization](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/localization?view=aspnetcore-2.2) 
 * Formatting - (Dates, Currencies, Numbers) - CultureInfo.CurrentCulture 
 * Resource Localization via Resx files - CultureInfo.CurrentUICulture
 
