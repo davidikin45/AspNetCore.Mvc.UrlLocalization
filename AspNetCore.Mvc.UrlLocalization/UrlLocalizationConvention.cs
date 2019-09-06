@@ -79,6 +79,7 @@ namespace AspNetCore.Mvc.UrlLocalization
             {
                 foreach (var selectorModel in matchedSelectors)
                 {
+                    //https://andrewlock.net/applying-the-routedatarequest-cultureprovider-globally-with-middleware-as-filters/
                     if (selectorModel.AttributeRouteModel.Template != null && selectorModel.AttributeRouteModel.Template.StartsWith("~/"))
                     {
                         var path = selectorModel.AttributeRouteModel.Template.Length > 2 ? $"/{selectorModel.AttributeRouteModel.Template.Substring(2)}" : "";
@@ -95,6 +96,7 @@ namespace AspNetCore.Mvc.UrlLocalization
                             selectorModel.AttributeRouteModel = routeModel;
                         }
                     }
+                    //https://andrewlock.net/applying-the-routedatarequest-cultureprovider-globally-with-middleware-as-filters/
                     else if (selectorModel.AttributeRouteModel.Template != null && selectorModel.AttributeRouteModel.Template.StartsWith("/"))
                     {
                         var path = selectorModel.AttributeRouteModel.Template.Length > 1 ? $"/{selectorModel.AttributeRouteModel.Template.Substring(1)}" : "";
