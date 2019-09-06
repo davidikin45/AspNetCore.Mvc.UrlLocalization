@@ -12,12 +12,12 @@ The aim of this package is to build on top of Resource Localization to provide '
 
 ### NuGet
 ```
-PM> Install-Package Hangfire.AspNetCore.UrlLocalization
+PM> Install-Package AspNetCore.Mvc.UrlLocalization
 ```
 
 ### .Net CLI
 ```
-> dotnet add package Hangfire.AspNetCore.UrlLocalization
+> dotnet add package AspNetCore.Mvc.UrlLocalization
 ```
 
 ## Examples

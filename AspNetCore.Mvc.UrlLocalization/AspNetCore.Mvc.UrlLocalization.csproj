@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.2;netcoreapp3.0;net461</TargetFrameworks>
     <Authors>David Ikin</Authors>
-    <Description>Library for implementing Url Localization using resource files</Description>
+    <Description>ASP.NET Core Library for implementing Url Localization using resource files</Description>
     <Copyright>(c) David Ikin</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/davidikin45/AspNetCore.Mvc.UrlLocalization</PackageProjectUrl>
