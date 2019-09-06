@@ -36,5 +36,8 @@ This project is licensed under the MIT License
 ## Acknowledgments
 
 * [Url culture provider using middleware as filters in ASP.NET Core 1.1.0](https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/)
+* [Applying the RouteDataRequest CultureProvider globally with middleware as filters](https://andrewlock.net/applying-the-routedatarequest-cultureprovider-globally-with-middleware-as-filters/)
+* [Using a culture constraint and catching 404s with the url culture provider](https://andrewlock.net/using-a-culture-constraint-and-catching-404s-with-the-url-culture-provider/)
+* [Redirecting unknown cultures to the default culture when using the url culture provider](https://andrewlock.net/redirecting-unknown-cultures-to-the-default-culture-when-using-the-url-culture-provider/)
 * [Localized routes with ASP.NET 5 and MVC 6](https://www.strathweb.com/2015/11/localized-routes-with-asp-net-5-and-mvc-6/)
 * [ASP.NET Core 2.1 MVC localized routing](https://github.com/saaratrix/asp.net-core-mvc-localized-routing)
