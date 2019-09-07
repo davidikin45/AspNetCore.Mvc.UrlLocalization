@@ -318,3 +318,4 @@ This project is licensed under the MIT License
 * [Redirecting unknown cultures to the default culture when using the url culture provider](https://andrewlock.net/redirecting-unknown-cultures-to-the-default-culture-when-using-the-url-culture-provider/)
 * [Localized routes with ASP.NET 5 and MVC 6](https://www.strathweb.com/2015/11/localized-routes-with-asp-net-5-and-mvc-6/)
 * [ASP.NET Core 2.1 MVC localized routing](https://github.com/saaratrix/asp.net-core-mvc-localized-routing)
+* [Dynamic controller routing in ASP.NET Core 3.0](https://www.strathweb.com/2019/08/dynamic-controller-routing-in-asp-net-core-3-0/)
