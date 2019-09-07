@@ -64,6 +64,7 @@ namespace AspNetCore.Mvc.UrlLocalization
     public enum NonLocalizedUrlHandling
     {
         Redirect,
-        Status404NotFound
+        Status404NotFound,
+        ContinueProcessing
     }
 }
