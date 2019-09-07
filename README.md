@@ -6,7 +6,7 @@ By default ASP.NET comes with support for [Globalization and Localization](https
 * Formatting - (Dates, Currencies, Numbers) - CultureInfo.CurrentCulture 
 * Resource Localization via Resx files - CultureInfo.CurrentUICulture
 
-The aim of this package is to build on top of Resource Localization to provide 'Url Localization' via files named Url.{culture}.resx. Unlocalized routes will continue to work for any culture until a localization is provided. For example /privacy would initially also work for /es/privacy also. Once a url route was included in Url.es.resx for Privacy > Intimidad the middleware (by default) would redirect /es/privacy > /es/intimidad. This functionality can be changed so a 404 is returned or the request is still processed. Inject IUrlLocalizer into views to localize link text.
+The aim of this package is to build on top of Resource Localization to provide Url Localization (Link Generation) and Unlocalization (Request Processing) via files named Url.{culture}.resx. Unlocalized routes will continue to work for any culture until a localization is provided. For example /privacy would initially also work for /es/privacy also. Once a url route was included in Url.es.resx for 'Privacy' > 'Intimidad' the middleware (by default) would redirect /es/privacy > /es/intimidad. This functionality can be changed so a 404 is returned or the request is still processed. Inject IUrlLocalizer into views to localize link text, often the link text is the same as the url route so in that case only one replacement would need to be added.
 
 ![Url Resource Files](img/screenshot.png "Url Resource Files")
 
