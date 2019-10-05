@@ -22,7 +22,9 @@ namespace AspNetCore.Mvc.UrlLocalization
             //var cultureFeature = context.Features.Get<IRequestCultureFeature>();   //Available after app.UseRequestLocalization(); Could also use CultureInfo.CurrentCulture or CultureInfo.CurrentUICulture.
             //var actualCultureLanguage = cultureFeature?.RequestCulture.UICulture.TwoLetterISOLanguageName;
 
-            if(!context.Items.ContainsKey("UrlUnlocalized"))
+            var originalPath = context.Request.Path;
+
+            if (!context.Items.ContainsKey("UrlUnlocalized"))
             {
                 context.Items.Add("UrlUnlocalized", true);
 
@@ -48,10 +50,14 @@ namespace AspNetCore.Mvc.UrlLocalization
                 if (!unlocalizedPath.Equals(context.Request.Path.Value, StringComparison.InvariantCultureIgnoreCase))
                 {
                     context.Request.Path = unlocalizedPath;
+
                 }
             }
 
             await _next(context);
+
+            //replace the original url after the remaining middleware has finished processing
+            context.Request.Path = originalPath;
         }
     }
 
