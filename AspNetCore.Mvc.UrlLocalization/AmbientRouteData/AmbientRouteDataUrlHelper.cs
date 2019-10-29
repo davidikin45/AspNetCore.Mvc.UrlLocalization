@@ -8,6 +8,7 @@ using System.Linq;
 
 namespace AspNetCore.Mvc.UrlLocalization.AmbientRouteData
 {
+    //https://stackoverflow.com/questions/52536969/asp-net-core-urlhelper-and-how-it-works
     internal class AmbientRouteDataUrlHelper : UrlHelperBase
     {
         private readonly IUrlHelper _urlHelper;

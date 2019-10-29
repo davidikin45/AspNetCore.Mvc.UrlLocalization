@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace AspNetCore.Mvc.UrlLocalization.AmbientRouteData
 {
+    //https://stackoverflow.com/questions/52536969/asp-net-core-urlhelper-and-how-it-works
     public class AmbientRouteDataUrlHelperFactory : IUrlHelperFactory
     {
         private readonly IUrlHelperFactory _helperFactory;

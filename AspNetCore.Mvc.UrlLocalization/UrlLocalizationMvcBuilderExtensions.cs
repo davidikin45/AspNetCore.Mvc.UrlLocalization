@@ -2,6 +2,7 @@
 using AspNetCore.Mvc.UrlLocalization.AmbientRouteData;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Routing;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -62,6 +63,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 services.Configure(setupAction);
 
             services.Decorate<IUrlHelperFactory, AmbientRouteDataUrlHelperFactory>();
+            services.Decorate<LinkGenerator, AmbientLinkGenerator>();
 
             return builder;
         }
