@@ -8,7 +8,7 @@ namespace AspNetCore.Mvc.UrlLocalization
 {
     public class UrlRequestCultureProvider : RequestCultureProvider
     {
-        static readonly Regex CultureConstraint = new Regex(@"^[a-zA-Z]{2,3}(\-[a-zA-Z]{4})?(\-[a-zA-Z0-9]{2,3})?$", RegexOptions.Compiled);
+        static readonly Regex CultureConstraint = new Regex(@"^(?!css|js|lib)[a-zA-Z]{2,3}(\-[a-zA-Z]{4})?(\-[a-zA-Z0-9]{2,3})?$", RegexOptions.Compiled);
 
         public UrlRequestCultureProvider()
         {
