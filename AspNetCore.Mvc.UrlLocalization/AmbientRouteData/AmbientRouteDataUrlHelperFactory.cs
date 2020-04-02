@@ -35,7 +35,12 @@ namespace AspNetCore.Mvc.UrlLocalization.AmbientRouteData
 
     public class AmbientRouteDataUrlHelperFactoryOptions
     {
-        public List<AmbientRouteDataKey> AmbientRouteDataKeys = new List<AmbientRouteDataKey>() { };
+        public List<AmbientRouteDataKey> AmbientRouteDataKeys = new List<AmbientRouteDataKey>() { 
+            new AmbientRouteDataKey("area", false),
+            new AmbientRouteDataKey("version", false),
+            new AmbientRouteDataKey("culture", true),
+            new AmbientRouteDataKey("ui-culture", true)
+        };
     }
 
     public class AmbientRouteDataKey
