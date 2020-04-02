@@ -42,7 +42,7 @@ namespace AspNetCore.Mvc.UrlLocalization
                 context.Response.StatusCode = StatusCodes.Status404NotFound;
                 return Task.CompletedTask;
             });            
-            conventionBuilder.Add(b => ((RouteEndpointBuilder)b).Order = int.MaxValue);
+            conventionBuilder.Add(b => ((RouteEndpointBuilder)b).Order = -1);
 
             //redirect culture-less routes
             conventionBuilder = routes.MapGet("{**path}", (RequestDelegate)(ctx =>
@@ -55,7 +55,7 @@ namespace AspNetCore.Mvc.UrlLocalization
                 ctx.Response.Redirect(culturedPath);
                 return Task.CompletedTask;
             }));
-            conventionBuilder.Add(b => ((RouteEndpointBuilder)b).Order = int.MaxValue);
+            conventionBuilder.Add(b => ((RouteEndpointBuilder)b).Order = -1);
 
             return routes;
         }
