@@ -37,14 +37,15 @@ namespace AspNetCore.Mvc.UrlLocalization
         public static IEndpointRouteBuilder RedirectCulturelessToDefaultCulture(this IEndpointRouteBuilder routes, string cultureRouteDataStringKey = "culture", string cultureConstraintKey = "cultureCheck")
         {
             //any route 1.has a culture; and 2.does not match the previous global route url will return a 404.
-            routes.MapGet("{" + cultureRouteDataStringKey + (!string.IsNullOrEmpty(cultureConstraintKey) ? $":{cultureConstraintKey}" : "") + "}/{**path}", context =>
+            var conventionBuilder = routes.MapGet("{" + cultureRouteDataStringKey + (!string.IsNullOrEmpty(cultureConstraintKey) ? $":{cultureConstraintKey}" : "") + "}/{**path}", context =>
             {
                 context.Response.StatusCode = StatusCodes.Status404NotFound;
                 return Task.CompletedTask;
-            });
+            });            
+            conventionBuilder.Add(b => ((RouteEndpointBuilder)b).Order = int.MaxValue);
 
             //redirect culture-less routes
-            routes.MapGet("{**path}", (RequestDelegate)(ctx =>
+            conventionBuilder = routes.MapGet("{**path}", (RequestDelegate)(ctx =>
             {
                 var cultureFeature = ctx.Features.Get<IRequestCultureFeature>();   //Available after app.UseRequestLocalization(); Could also use CultureInfo.CurrentCulture or CultureInfo.CurrentUICulture.
                 var actualCulture = cultureFeature?.RequestCulture.Culture.Name;
@@ -54,6 +55,7 @@ namespace AspNetCore.Mvc.UrlLocalization
                 ctx.Response.Redirect(culturedPath);
                 return Task.CompletedTask;
             }));
+            conventionBuilder.Add(b => ((RouteEndpointBuilder)b).Order = int.MaxValue);
 
             return routes;
         }
