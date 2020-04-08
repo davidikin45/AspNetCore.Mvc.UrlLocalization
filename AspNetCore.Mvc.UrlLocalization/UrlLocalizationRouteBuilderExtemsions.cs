@@ -8,6 +8,7 @@ namespace AspNetCore.Mvc.UrlLocalization
 {
     public static class UrlLocalizationRouteBuilderExtemsions
     {
+        //.NET Core 2.2
         //404 cultureless. Used with AddCultureRouteConvention.
         public static IRouteBuilder RedirectCulturelessToDefaultCulture(this IRouteBuilder routes, string cultureRouteDataStringKey = "culture", string cultureConstraintKey = "cultureCheck")
         {
@@ -33,7 +34,6 @@ namespace AspNetCore.Mvc.UrlLocalization
             return routes;
         }
 
-#if NETCOREAPP3_0
         public static IEndpointRouteBuilder RedirectCulturelessToDefaultCulture(this IEndpointRouteBuilder routes, string cultureRouteDataStringKey = "culture", string cultureConstraintKey = "cultureCheck")
         {
             //any route 1.has a culture; and 2.does not match the previous global route url will return a 404.
@@ -59,6 +59,6 @@ namespace AspNetCore.Mvc.UrlLocalization
 
             return routes;
         }
-#endif
+
     }
 }
