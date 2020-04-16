@@ -40,7 +40,8 @@ namespace AspNetCore.Mvc.UrlLocalization
                         }
                         else if (_options.NonLocalizedUrlHandling == NonLocalizedUrlHandling.Redirect)
                         {
-                            context.Response.Redirect($"{context.Request.PathBase}{localizedPath}{context.Request.QueryString.ToString()}");
+                            var uri = new Uri($"{context.Request.Scheme}://{context.Request.Host}{context.Request.PathBase}{localizedPath}{context.Request.QueryString.ToString()}");
+                            context.Response.Redirect(uri.AbsoluteUri);
                             return;
                         }
                     }
